@@ -1,6 +1,5 @@
 "use strict";
 exports.__esModule = true;
-var jasmine_1 = require("jasmine");
 var _ = require("lodash");
 var TestReducer = (function () {
     function TestReducer(reducer, baseState) {
@@ -43,7 +42,7 @@ var TestReducer = (function () {
             throw Error('No actual state found. Must call "When" Before calling "Then"');
         }
         var expected = _.merge({}, this.initialState, nextStateDiff);
-        jasmine_1.expect(this.actual).toEqual(expected, this.generateDiffBetweenObjectsAsMessage(this.actual, expected));
+        expect(this.actual).toEqual(expected, this.generateDiffBetweenObjectsAsMessage(this.actual, expected));
     };
     TestReducer.prototype.thenNextStateShouldNotChange = function () {
         this.thenNextStateShouldBe({});

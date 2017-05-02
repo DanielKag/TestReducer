@@ -26,6 +26,7 @@
   "homepage": "https://github.com/DanielKag/TestReducer#readme",
   "dependencies": {
     "jasmine": "^2.6.0",
+    "@types/jasmine": "^2.5.47",
     "lodash": "^4.17.4"
   }
 }

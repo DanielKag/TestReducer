@@ -1,9 +1,9 @@
-import {expect, toEqual} from 'jasmine'
+import {} from 'jasmine';
 import * as _ from 'lodash'
 
 export interface IAction {
     type: string;
-    payload: any;
+    payload?: any;
 }
 
 export class TestReducer {
@@ -22,7 +22,8 @@ export class TestReducer {
 
     this.reducer = reducer;
     this.baseState = baseState;
-    this.newLineSeparator = `\n${_.range(100).map(x => '=').join('')}\n`;  }
+    this.newLineSeparator = `\n${_.range(100).map(x => '=').join('')}\n`;  
+  }
 
   public givenInitialState (initStateDiff: any = {}): TestReducer {
     this.initialState = _.merge({}, this.baseState, initStateDiff);
