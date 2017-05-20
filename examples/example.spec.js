@@ -1,5 +1,3 @@
-// When consuming as package, import statement should be:
-// import { TestReducer } from 'test-reducer'
 const TestReducer = require('../src/TestReducer').TestReducer
 
 describe('counter #example',() => {
@@ -30,11 +28,12 @@ describe('counter #example',() => {
             .whenActionIs({type: 'RESET'})
             .thenStateIs({counter: 0});
     })
+    // This test is failing on porpuse
     it('should update the display settings from true to false', () => {
         tester
             .givenState({settings: {admin: {display: true}}})
             .whenActionIs({type: 'TOGGLE_DISPLAY'})
-            .thenStateIs({settings: {admin: {display: false}}});
+            .thenStateIs({settings: {admin: {display: true, prop: 1}}});
     })
 })
 

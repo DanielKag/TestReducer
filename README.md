@@ -1,49 +1,97 @@
 # TestReducer
+A simple yet smart testing framework for your redux's reducers.
+You can use whatever unit testing framework you wish.
+
+## Getting Started
+`npm install test-reducer --save-dev`
+
+## What this is all about
+A reducer is a simple function.
+It gets the current state object and an action, and calculate the next state of the system.
+We this framework, you can test your reducer in this manner:
+
+`Given SomeState
+ When  Dispaching an action
+ Then  The next state should be`
+
+The framework allows you to send only a small portion of the state, that is relevant to your test.
+Moreover, if the test fails, meaning - the actual state is different from the expected one,
+You will recieve the delta between the two.
+For example, the 4th test in this example is fails and the error is:
+(It fails because I intentially expected 'true' when it should have been 'false', and also added a property named 'prop' that shouldn't been there)
+
+![alt text](http://url/to/img.png)
 
 ## Example
-```typescript
-import {} from 'jasmine';
+You can also find this example under examples/example.spec.js
 
-// When consuming as package, import statement should be:
-// import { TestReducer } from 'test-reducer'
-import { TestReducer}  from '../TestReducer'
+```javascript
+const TestReducer = require('test-reducer').TestReducer
+
+describe('counter #example',() => {
+    let tester;
+    const state = {
+        counter: 0,
+        settings: {admin: {display: false, notRelevantProp: 1}, notRelevantProp: 4}
+    }
+
+    beforeEach(() => {
+        tester = new TestReducer(sampleReducer, state);
+    });
+
+    it('should do nothing on an unknown action', ()=> {
+        tester
+            .whenActionIs({type: 'BLA'})
+            .thenNoChange();
+    })
+    it('should add 4 to the counter', () => {
+        tester
+            .givenState({counter: 3})
+            .whenActionIs({type: 'ADD', payload: 4})
+            .thenStateIs({counter: 7});
+    })
+    it('should reset the counter', () => {
+        tester
+            .givenState({counter: 3})
+            .whenActionIs({type: 'RESET'})
+            .thenStateIs({counter: 0});
+    })
+    it('should update the display settings from true to false', () => {
+        tester
+            .givenState({settings: {admin: {display: true}}})
+            .whenActionIs({type: 'TOGGLE_DISPLAY'})
+            .thenStateIs({settings: {admin: {display: false}}});
+    })
+
+    // This test is failing on porpuse
+    it('should update the display settings from true to false but fails', () => {
+        tester
+            .givenState({settings: {admin: {display: true}}})
+            .whenActionIs({type: 'TOGGLE_DISPLAY'})
+            .thenStateIs({settings: {admin: {display: true}}});
+    })
+})
 
 const sampleReducer = (state, action) => {
     switch (action.type) {
         case 'ADD':
             const newCounterValue = state.counter + action.payload;
-            return (<any>Object).assign({}, state, {counter: newCounterValue})
+            return Object.assign({}, state, {counter: newCounterValue})
             
         case 'RESET':
-            return (<any>Object).assign({}, state, {counter: 0})
+            return Object.assign({}, state, {counter: 0})
+
+        case 'TOGGLE_DISPLAY':
+            const newSettings = {
+                admin: {
+                    display: !state.settings.admin.display, 
+                    notRelevantProp: 1
+                }, notRelevantProp: 4
+            }
+            return Object.assign({}, state, {settings: newSettings});
 
         default:
-            return (<any>Object).assign({}, state)
+            return Object.assign({}, state)
     }
 }
-
-const state = {
-    counter: 0,
-    moreStuff: {foo: 'bar'}
-}
-
-describe('counter',() => {
-    it('should add 4 to the counter', () => {
-        new TestReducer(sampleReducer, state)
-            .givenInitialState({counter: 3})
-            .whenDispatchingAction({type: 'ADD', payload: 4})
-            .thenNextStateShouldBe({counter: 7})
-    })
-    it('should reset the counter', () => {
-        new TestReducer(sampleReducer, state)
-            .givenInitialState({counter: 3})
-            .whenDispatchingAction({type: 'RESET'})
-            .thenNextStateShouldBe({counter: 0})
-    })
-    it('should do nothing on an unknown action', ()=> {
-        new TestReducer(sampleReducer, state)
-            .whenDispatchingAction({type: 'BLA'})
-            .thenNextStateShouldNotChange()
-    })
-})
 ```
