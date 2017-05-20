@@ -12,11 +12,11 @@ It gets the current state object and an action, and calculate the next state of 
 
 With this framework, you can test your reducer in the following manner:
 
-`Given` Some State
+`Given` Some <state>
 
-`When`  Dispatching an action
+`When`  Dispatching an <action>
 
-`Then`  The next state should be
+`Then`  The next state should be <expected state>
 
 The framework allows you to send only a small portion of the state, that is relevant to your test.
 Moreover, if the test fails, meaning - the actual state is different from the expected one,
