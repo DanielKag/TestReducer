@@ -11,11 +11,9 @@ A reducer is a simple function.
 It gets the current state object and an action, and calculate the next state of the system.
 We this framework, you can test your reducer in this manner:
 
-`Given SomeState
-
- When  Dispaching an action
- 
- Then  The next state should be`
+`Given SomeState`
+`When  Dispaching an action`
+`Then  The next state should be`
 
 The framework allows you to send only a small portion of the state, that is relevant to your test.
 Moreover, if the test fails, meaning - the actual state is different from the expected one,
