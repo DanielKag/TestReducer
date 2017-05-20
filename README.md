@@ -9,19 +9,21 @@ You can use whatever unit testing framework you wish.
 ## What this is all about
 A reducer is a simple function.
 It gets the current state object and an action, and calculate the next state of the system.
-We this framework, you can test your reducer in this manner:
 
-`Given SomeState`
+With this framework, you can test your reducer in the following manner:
 
-`When  Dispaching an action`
+`Given` Some State
 
-`Then  The next state should be`
+`When`  Dispatching an action
+
+`Then`  The next state should be
 
 The framework allows you to send only a small portion of the state, that is relevant to your test.
 Moreover, if the test fails, meaning - the actual state is different from the expected one,
 You will recieve the delta between the two.
-For example, the 4th test in this example is fails and the error is:
-(It fails because I intentially expected 'true' when it should have been 'false', and also added a property named 'prop' that shouldn't been there)
+For example, the 4th test in this example fails and the error is:
+
+*It fails because I intentially expected 'true' when it should have been 'false', and also added a property named 'prop' that shouldn't be there)*
 
 ![error](assets/error.png)
 
