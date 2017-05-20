@@ -1,4 +1,4 @@
-const TestReducer = require('../src/TestReducer').TestReducer
+const TestReducer = require('test-reducer').TestReducer
 
 describe('counter #example',() => {
     let tester;
