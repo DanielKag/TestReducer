@@ -4,7 +4,17 @@ A simple yet smart testing framework for your redux's reducers.
 You can use whatever unit testing framework you wish.
 
 ## Getting Started
+### Installing
 `npm install test-reducer --save-dev`
+
+### Running the example
+`mkdir test-reducer-example`
+`cd test-reducer-example`
+`npm init -y`
+`npm install --save-dev test-reducer jasmine`
+`jasmine init`
+`copy node_modules\test-reducer\examples\example.spec.js spec\example.spec.js`
+`jasmine`
 
 ## What this is all about
 A reducer is a simple function.
