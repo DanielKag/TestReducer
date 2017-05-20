@@ -1,5 +1,6 @@
 # TestReducer
 A simple yet smart testing framework for your redux's reducers.
+
 You can use whatever unit testing framework you wish.
 
 ## Getting Started
@@ -11,7 +12,9 @@ It gets the current state object and an action, and calculate the next state of 
 We this framework, you can test your reducer in this manner:
 
 `Given SomeState
+
  When  Dispaching an action
+ 
  Then  The next state should be`
 
 The framework allows you to send only a small portion of the state, that is relevant to your test.
@@ -20,7 +23,7 @@ You will recieve the delta between the two.
 For example, the 4th test in this example is fails and the error is:
 (It fails because I intentially expected 'true' when it should have been 'false', and also added a property named 'prop' that shouldn't been there)
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/DanielKag/TestReducer/blob/master/examples/ImagesForReadme/error.png)
 
 ## Example
 You can also find this example under examples/example.spec.js
