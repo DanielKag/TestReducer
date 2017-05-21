@@ -1,7 +1,7 @@
 {
   "name": "test-reducer",
-  "version": "1.1.4",
-  "description": "A framework for testing redux reducers using jasmine",
+  "version": "1.1.5",
+  "description": "A simple yet smart testing framework for your redux's reducers",
   "main": "TestReducer.js",
   "scripts": {
     "test": "jasmine",
@@ -31,8 +31,7 @@
     "lodash.isfunction": "^3.0.8",
     "lodash.isobject": "^3.0.2",
     "lodash.merge": "^4.6.0",
-    "lodash.range": "^3.2.0",
-    "lodash.reduce": "^4.6.0"
+    "lodash.range": "^3.2.0"
   },
   "devDependencies": {
     "jasmine": "^2.6.0"

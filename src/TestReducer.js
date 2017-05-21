@@ -7,6 +7,11 @@ var isObject = require("lodash.isobject");
 var TestReducer = (function () {
     function TestReducer(reducer, baseState) {
         if (baseState === void 0) { baseState = {}; }
+        // backward compatibility
+        this.givenInitialState = this.givenState;
+        this.whenDispatchingAction = this.whenActionIs;
+        this.thenNextStateShouldBe = this.thenStateIs;
+        this.thenNextStateShouldNotChange = this.thenNoChange;
         if (!reducer)
             throw new Error('No reducer supplied to TestReducer');
         if (!isFunction(reducer))
