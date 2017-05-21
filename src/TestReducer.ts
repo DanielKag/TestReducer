@@ -55,10 +55,4 @@ export class TestReducer {
   public thenNoChange (): void {
     this.thenStateIs({});
   }
-
-  // backward compatibility
-  public givenInitialState = this.givenState;
-  public whenDispatchingAction = this.whenActionIs;
-  public thenNextStateShouldBe = this.thenStateIs;
-  public thenNextStateShouldNotChange = this.thenNoChange;
 }
