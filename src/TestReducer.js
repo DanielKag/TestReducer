@@ -42,6 +42,17 @@ var TestReducer = (function () {
             throw new Error(diff);
         return true;
     };
+	TestReducer.prototype.thenStateIsExactly = function (expected) {			
+43	            if (expected === void 0) { expected = {}; }			
+44	            if (!this.actualResult)			
+45	                throw new Error('No actual state found. Must call "When" Before calling "Then"');			
+46	            if (utils.objectHasCycles(expected))			
+47	                throw new Error('Expect state contains cyclic objects\n');			
+48	            var diff = utils.generateDiffBetweenObjectsAsMessage(this.actualResult, expected);			
+49	            if (diff)			
+50	                throw new Error(diff);			
+51	            return true;			
+52	};
     TestReducer.prototype.thenNoChange = function () {
         this.thenStateIs({});
     };

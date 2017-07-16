@@ -51,6 +51,16 @@ export class TestReducer {
 
     return true;
   }
+  
+  public thenStateIsExactly (expected: any = {}): boolean {
+    if (!this.actualResult) throw new Error('No actual state found. Must call "When" Before calling "Then"');        
+    if (utils.objectHasCycles(expected)) throw new Error('Expect state contains cyclic objects\n');
+
+    const diff = utils.generateDiffBetweenObjectsAsMessage(this.actualResult, expected);
+    if(diff) throw new Error(diff);
+
+    return true;
+  }
 
   public thenNoChange (): void {
     this.thenStateIs({});
